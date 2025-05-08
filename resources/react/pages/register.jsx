@@ -13,12 +13,24 @@ const RegisterPage = () => {
     const [province, setProvince] = useState('');
     const [agree, setAgree] = useState(false);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (agree) {
-            navigate('/login');
+            console.log({
+                username,
+                email,
+                password,
+                phone,
+                address,
+                kelurahan,
+                kecamatan,
+                city,
+                province
+            });
+            // Redirect to another page after successful registration
+            // navigate('/login');
         }
     };
 

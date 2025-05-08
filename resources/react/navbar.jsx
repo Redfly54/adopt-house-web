@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <nav className="bg-sky-700 p-10 text-white">
       <ul className="flex justify-between items-center">
-        {/* Left Section */}
         <div className="flex items-center">
           <li>
             <Link to="/" className="hover:underline">
@@ -18,7 +17,6 @@ const Navbar = () => {
           </li>
         </div>
 
-        {/* Right Section */}
         <div className="flex space-x-4">
           <li>
             <Link 
