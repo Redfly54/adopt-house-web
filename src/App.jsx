@@ -1,9 +1,10 @@
 // import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './navbar';
-import Footer from './footer';
-import RegisterPage from './pages/register';
-import LoginPage from './pages/login';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import RegisterPage from './pages/register/register';
+import LoginPage from './pages/login/login';
+import HomePage from './pages/home/home';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -12,7 +13,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<h1 className="text-3xl font-family font-bold">Hello world!</h1>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
