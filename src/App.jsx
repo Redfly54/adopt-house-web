@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import RegisterPage from './pages/register/register';
 import LoginPage from './pages/login/login';
 import HomePage from './pages/home/home';
+import ReferencePage from './pages/register/reference';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/reference" element={<ReferencePage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer />
