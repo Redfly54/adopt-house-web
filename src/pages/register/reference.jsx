@@ -61,16 +61,15 @@ const ReferencePage = () => {
                     color_count
                 })
                 });
-
                 if (response.ok) {
                     navigate('/login');
                 } else {
-                    const errorData = await response.json();
+                    const errorData =await response.json();
                     console.error('Registration failed:', errorData.message);
                     alert(errorData.message); 
                 }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error:', error.message);
                 alert('An error occurred. Please try again.');
             }
     }
