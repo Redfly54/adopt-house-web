@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import HeroBG from '../../assets/img/HeroBG.png';
+import ProfBG from '../../assets/img/ProfBG.png';
 
 const HeroSection = ({ user, isEditing, setUser }) => {
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -46,20 +46,20 @@ const HeroSection = ({ user, isEditing, setUser }) => {
     };
 
     return (
-        <div className="section-Hero bg-(--grey) h-screen mx-10 py-5 ">
+        <div className="section-Hero bg-(--grey) h-screen mx-10 py-5 relative">
             <img
-                src={HeroBG}
+                src={ProfBG}
                 alt="Hero Background"
-                className="object-cover filter opacity-80 rounded-md"
+                className="object-cover filter opacity-80 rounded-md relative top-0 left-0 w-full h-full "
             />
 
-            <div className="relative z-10 text-center text-black">
+            <div className="absolute bottom-32 left-12 flex items-center gap-x-4 z-10">
                 {isEditing ? (
                     <>
                         <img
                             src={`${BACKEND_URL}/${user.picture}`}
                             alt="Profile"
-                            className="w-32 h-32 rounded-full mx-auto border-4 p-1 border-white shadow-lg cursor-pointer"
+                            className="w-36 h-36 rounded-full border-4 p-1 border-green-400 shadow-lg cursor-pointer"
                             onClick={handleImageClick}
                         />
                         <input
@@ -74,11 +74,10 @@ const HeroSection = ({ user, isEditing, setUser }) => {
                     <img
                         src={`${BACKEND_URL}/${user.picture}`}
                         alt="Profile"
-                        className="w-32 h-32 rounded-full mx-auto border-4 p-1 border-white shadow-lg"
+                        className="w-36 h-36 rounded-full p-2 shadow-lg"
                     />
                 )}
-
-                <h1 className="text-4xl font-bold">{user.username}</h1>
+                <h1 className="text-4xl font-bold px-4 py-2 rounded">{user.username}</h1>
             </div>
         </div>
     );
