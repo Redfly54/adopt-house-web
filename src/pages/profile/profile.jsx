@@ -66,7 +66,7 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <HeroSection user={user} />
+            <HeroSection user={user} isEditing={isEditing} setUser={setUser} />
             <div className="section-Profile bg-gray-100 h-screen mx-10 py-5">
                 <div className="profile-info bg-white rounded-md shadow-md p-10 my-10">
                     <p className="text-4xl font-bold">About Me</p>
