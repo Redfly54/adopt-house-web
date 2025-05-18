@@ -6,11 +6,11 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="bg-(--navy)  text-(--white)">
-      <ul className="flex justify-between items-center p-(--header-height) lg:flex-row">
+    <div className="bg-(--navy)  text-(--white)">
+      <div className="flex justify-between items-center p-[2rem] px-5 md:px 16 lg:flex-row">
         {/* Left Section */}
-        <div className="flex items-center">
-          <Link to="/" className="hover:underline">
+        <div className="flex items-center object-cover">
+          <Link to="/" className="">
             <span className='text-2xl font-extrabold'>
               <img src={logo} alt="Logo" className="h-24 w-24 inline-block mr-2" />
               Adopt House
@@ -20,23 +20,23 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex space-x-4">
-          <li>
-            <Link
-              to="/register"
-              className={`text-2xl underline-offset-10 ${location.pathname === '/register' ? 'underline' : ''}`}>
-              Sign Up
-            </Link>
-          </li>
-          <li>
+          <div>
             <Link
               to="/login"
-              className={`text-2xl underline-offset-10 ${location.pathname === '/login' ? 'underline' : ''}`}>
+              className={`nav text-2xl hover:underline underline-offset-11 ${location.pathname === '/login' ? 'underline' : ''}`}>
               Sign In
             </Link>
-          </li>
+          </div>
+          <div>
+            <Link
+              to="/register"
+              className={`nav text-2xl hover:underline underline-offset-11 ${location.pathname === '/register' ? 'underline' : ''}`}>
+              Sign Up
+            </Link>
+          </div>
         </div>
-      </ul>
-    </nav>
+      </div>
+    </div>
   );
 };
 
