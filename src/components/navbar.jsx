@@ -28,13 +28,13 @@ const Navbar = () => {
       <ul className="flex justify-between items-center p-(--header-height) lg:flex-row">
         <div className="flex items-center">
           <Link to="/" className="hover:underline">
+
             <span className='text-2xl font-extrabold'>
               <img src={logo} alt="Logo" className="h-24 w-24 inline-block mr-2" />
               Adopt House
             </span>
           </Link>
         </div>
-
         {token ? (
           <div className="flex space-x-4">
             <li>
@@ -86,6 +86,7 @@ const Navbar = () => {
         )}
       </ul>
     </nav>
+
   );
 };
 

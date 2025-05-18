@@ -5,8 +5,14 @@ import Footer from './components/footer';
 import RegisterPage from './pages/register/register';
 import LoginPage from './pages/login/login';
 import HomePage from './pages/home/home';
+
 import ReferencePage from './pages/register/reference';
 import ProfilePage from './pages/profile/profile';
+
+import TermsPolicy from './pages/terms-policy/terms-policy';
+import About from './pages/about/about';
+import Animals from './pages/animals/animals';
+
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -19,7 +25,14 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/reference" element={<ReferencePage />} />
         <Route path="/login" element={<LoginPage />} />
+
         <Route path="/profile" element={<ProfilePage />} />
+
+        <Route path='/terms-policy' element={<TermsPolicy />} />
+        <Route path='/animals' element={<Animals />} />
+        <Route path='/about-us' element={<About />} />
+
+
       </Routes>
       <Footer />
     </Router>
