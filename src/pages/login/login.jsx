@@ -5,13 +5,39 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_API_URL;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const response = await fetch(`${apiURL}/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    navigate('/');
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful:', data);
+
+        // Store the token in localStorage or sessionStorage
+        localStorage.setItem('auth_token', data.token);
+
+        navigate('/');
+      } else {
+        const errorData = await response.json();
+        console.error('Login failed:', errorData.message);
+        alert(errorData.message); 
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (

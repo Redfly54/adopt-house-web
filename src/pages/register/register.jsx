@@ -6,19 +6,30 @@ const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
+    const [alamat, setAlamat] = useState('');
     const [kelurahan, setKelurahan] = useState('');
     const [kecamatan, setKecamatan] = useState('');
-    const [city, setCity] = useState('');
-    const [province, setProvince] = useState('');
+    const [kota, setKota] = useState('');
+    const [provinsi, setProvinsi] = useState('');
     const [agree, setAgree] = useState(false);
-
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (agree) {
-            navigate('/login');
+            navigate('/reference', {
+            state: {
+                username,
+                email,
+                password,
+                phone,
+                alamat,
+                kelurahan,
+                kecamatan,
+                kota,
+                provinsi,
+            },
+        });
         }
     };
 
@@ -76,8 +87,8 @@ const RegisterPage = () => {
                         <input
                             type="text"
                             placeholder="Jalan"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
+                            value={alamat}
+                            onChange={(e) => setAlamat(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
                             required
                         />
@@ -109,8 +120,8 @@ const RegisterPage = () => {
                         <input
                             type="text"
                             placeholder="Kota"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            value={kota}
+                            onChange={(e) => setKota(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
                             required
                         />
@@ -120,8 +131,8 @@ const RegisterPage = () => {
                         <input
                             type="text"
                             placeholder="Provinsi"
-                            value={province}
-                            onChange={(e) => setProvince(e.target.value)}
+                            value={provinsi}
+                            onChange={(e) => setProvinsi(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
                             required
                         />
