@@ -34,6 +34,7 @@ const ProfilePage = () => {
         fetchUser();
     }, []);
 
+
     const handleEditClick = () => {
         setIsEditing(true); 
     };

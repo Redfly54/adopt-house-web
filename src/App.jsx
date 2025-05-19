@@ -5,8 +5,9 @@ import Footer from './components/footer';
 import RegisterPage from './pages/register/register';
 import LoginPage from './pages/login/login';
 import HomePage from './pages/home/home';
-
 import ReferencePage from './pages/register/reference';
+
+import PostPage from './pages/post/post';
 import ProfilePage from './pages/profile/profile';
 
 import TermsPolicy from './pages/terms-policy/terms-policy';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/reference" element={<ReferencePage />} />
         <Route path="/login" element={<LoginPage />} />
 
+        <Route path="/post" element={<PostPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
         <Route path='/terms-policy' element={<TermsPolicy />} />
