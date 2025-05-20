@@ -4,7 +4,6 @@ import ProfBG from '../../assets/img/ProfBG.png';
 const HeroSection = ({ user, isEditing, setUser }) => {
     const fileInputRef = useRef(null);
     const apiURL = import.meta.env.VITE_API_URL;
-    const imgURL = import.meta.env.VITE_IMG_URL;
 
     console.log(`${apiURL}/${user.picture}`);
 
@@ -59,9 +58,9 @@ const HeroSection = ({ user, isEditing, setUser }) => {
                 {isEditing ? (
                     <>
                         <img
-                            src={`${imgURL}/${user.picture}`}
+                            src={`${apiURL}/${user.picture}`}
                             alt="Profile"
-                            className="w-36 h-36 rounded-full border-4 p-1 border-green-400 shadow-lg cursor-pointer"
+                            className="w-36 h-36 rounded-full border-4 p-1 border-green-400 shadow-lg cursor-pointer object-cover"
                             onClick={handleImageClick}
                         />
                         <input
@@ -74,7 +73,7 @@ const HeroSection = ({ user, isEditing, setUser }) => {
                     </>
                 ) : (
                     <img
-                        src={`${imgURL}/${user.picture}`}
+                        src={`${apiURL}/${user.picture}`}
                         alt="Profile"
                         className="w-36 h-36 rounded-full p-2 shadow-lg object-cover"
                     />

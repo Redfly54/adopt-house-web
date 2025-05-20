@@ -103,7 +103,6 @@ const PostPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(pictures);
         const formData = new FormData();
         formData.append('pet_name', pet_name);
         formData.append('pet_category_id', animal_type);

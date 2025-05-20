@@ -8,7 +8,6 @@ const Navbar = () => {
 
   const [user, setUser] = useState(null);
   const apiURL = import.meta.env.VITE_API_URL;
-  const imgURL = import.meta.env.VITE_IMG_URL;
 
   useEffect(() => {
     if (token) {
@@ -46,8 +45,8 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/"
-                className={`text-2xl underline-offset-10 ${location.pathname === '/' ? 'underline' : ''}`}>
+                to="/findpet"
+                className={`text-2xl underline-offset-10 ${location.pathname === '/findpet' ? 'underline' : ''}`}>
                 Temukan Hewan
               </Link>
             </li>
@@ -57,7 +56,7 @@ const Navbar = () => {
                 className={`flex items-center text-2xl underline-offset-10 ${location.pathname === '/profile' ? 'underline' : ''}`}>
                 {user && user.picture && (
                   <img
-                    src={`${imgURL}/${user.picture}`}
+                    src={`${apiURL}/${user.picture}`}
                     alt="Profile"
                     className="w-8 h-8 rounded-full mr-2 border object-cover"
                   />

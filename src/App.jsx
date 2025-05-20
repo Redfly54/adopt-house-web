@@ -9,6 +9,7 @@ import ReferencePage from './pages/register/reference';
 
 import PostPage from './pages/post/post';
 import ProfilePage from './pages/profile/profile';
+import FindPetPage from './pages/findpet/findpet';
 
 import TermsPolicy from './pages/terms-policy/terms-policy';
 import About from './pages/about/about';
@@ -29,6 +30,7 @@ function App() {
 
         <Route path="/post" element={<PostPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/findpet" element={<FindPetPage />} />
 
         <Route path='/terms-policy' element={<TermsPolicy />} />
         <Route path='/animals' element={<Animals />} />
