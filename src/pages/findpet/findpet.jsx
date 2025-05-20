@@ -82,7 +82,10 @@ const FindPetPage = () => {
               setCurrentPage(1); // Reset to first page on filter change
             }}
           >
-            <span className="text-3xl">{cat.icon || '🐾'}</span>
+            {cat.icon
+                ? <img src={`${apiURL}/${cat.icon}`} alt={cat.name} className="w-8 h-8 object-contain" />
+                : <span className="text-3xl">🐾</span>
+            }
             {cat.name}
           </button>
         ))}

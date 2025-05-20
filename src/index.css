@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
 /* src/index.css */
 @theme {
@@ -50,6 +52,7 @@
   }
 }
 
+
 * {
   font-family: var(--body-font);
 }
@@ -57,3 +60,4 @@
 body{
   background-color: var(--grey);
 }
+
