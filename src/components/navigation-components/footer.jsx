@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '../assets/img/logo.png';
+import logo from '../../assets/img/logo.png';
+import { FaXTwitter, FaInstagram, FaYoutube, FaLinkedin  } from "react-icons/fa6";
 
 const Footer = () => {
   const location = useLocation();
@@ -9,7 +10,6 @@ const Footer = () => {
   if (!authFooter) return (
     <footer className="bg-white text-black py-16 px-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
-        {/* Logo & Socials */}
         <div>
           <div className="flex items-center mb-6">
             <img src={logo} alt="Logo" className="h-16 w-16 mr-2" />
@@ -17,16 +17,16 @@ const Footer = () => {
           </div>
           <div className="flex space-x-4 mb-4">
             <a href="#" aria-label="X">
-             <i className="ri-twitter-x-line text-2xl"></i>
+             <FaXTwitter className="text-[32px]"/>
             </a>
             <a href="#" aria-label="Instagram">
-              <i className="ri-instagram-line text-2xl"></i>
+              <FaInstagram className="text-[32px]"/>
             </a>
             <a href="#" aria-label="YouTube">
-              <i className="ri-youtube-line text-2xl"></i>
+              <FaYoutube className="text-[32px]"/>
             </a>
             <a href="#" aria-label="LinkedIn">
-              <i className="ri-linkedin-box-line text-2xl"></i>
+              <FaLinkedin className="text-[32px]"/>
             </a>
           </div>
         </div>

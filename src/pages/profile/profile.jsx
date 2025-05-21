@@ -34,6 +34,7 @@ const ProfilePage = () => {
         fetchUser();
     }, []);
 
+
     const handleEditClick = () => {
         setIsEditing(true); 
     };
@@ -54,7 +55,7 @@ const ProfilePage = () => {
             });
 
             if (response.ok) {
-                    alert('Description updated successfully');
+                    alert('Biodata updated successfully');
                     console.log('Successfully updated description');
                 } else {
                     console.error('Failed to update description');

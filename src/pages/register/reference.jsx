@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const ReferencePage = () => {
@@ -8,6 +8,8 @@ const ReferencePage = () => {
     const [animal_gender, setGenderHewan] = useState('');
     const [age_group, setKelompokUsia] = useState('');
     const [color_count, setJumlahWarna] = useState('');
+    const apiURL = import.meta.env.VITE_API_URL;
+
 
     const {
         username = '',
@@ -21,19 +23,31 @@ const ReferencePage = () => {
         provinsi = '',
     } = location.state || {};
 
-    const jenisHewanOptions = {
-        dog: ['Bulldog', 'kampung', 'Retriever', 'beagle', 'German Shepherd', 'another'],
-        cat: ['Persia', 'angora', 'kampung', 'siam', 'Bengal', 'another'],
-        rabbit: ['lop', 'dwar', 'anggora', 'himalayan', 'havana'],
-    };
+    const [categories, setCategories] = useState([]);
+    const [breeds, setBreeds] = useState([]);
+    const [ages, setAges] = useState([]);
 
-    const umurHewanOptions = {
-        dog : ['puppy', 'adult', 'senior'],
-        cat: ['kitten', 'adult', 'senior'],
-        rabbit: ['muda', 'adult', 'senior'],
-    }
+     useEffect(() => {
+        fetch(`${apiURL}/pet-categories`)
+            .then(res => res.json())
+            .then(data => setCategories(data));
+        fetch(`${apiURL}/ages`)
+            .then(res => res.json())
+            .then(data => setAges(data));
+    }, [apiURL]);
 
-    const apiURL = import.meta.env.VITE_API_URL;
+    useEffect(() => {
+        if (animal_type) {
+            console.log(animal_type);
+            fetch(`${apiURL}/breeds?category_id=${animal_type}`)
+                .then(res => res.json())
+                .then(data => setBreeds(data));
+        } else {
+            setBreeds([]);
+        }
+    }, [animal_type, apiURL]);
+
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -90,9 +104,9 @@ const ReferencePage = () => {
                             <option value="" disabled>
                                 Select Tipe Hewan yang ingin dipelhara
                             </option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                            <option value="rabbit">Rabbit</option>
+                            {categories.map(cat => (
+                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div>
@@ -109,12 +123,9 @@ const ReferencePage = () => {
                                     ? 'Select Jenis Hewan'
                                     : 'Select Type Hewan First'}
                             </option>
-                            {animal_type &&
-                                jenisHewanOptions[animal_type].map((jenis) => (
-                                    <option key={jenis} value={jenis}>
-                                        {jenis}
-                                    </option>
-                                ))}
+                            {breeds.map(br => (
+                                <option key={br.id} value={br.id}>{br.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div>
@@ -149,12 +160,9 @@ const ReferencePage = () => {
                                     ? 'Select Kelompok Usia Hewan'
                                     : 'Select Gender Hewan First'}
                             </option>
-                            {animal_gender &&
-                                umurHewanOptions[animal_type].map((umur) => (
-                                    <option key={umur} value={umur}>
-                                        {umur}
-                                    </option>
-                                ))}
+                            {ages.map(age => (
+                                <option key={age.id} value={age.id}>{age.category}</option>
+                            ))}
                         </select>
                     </div>
                     <div>

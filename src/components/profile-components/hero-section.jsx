@@ -2,9 +2,10 @@ import React, { useRef } from 'react';
 import ProfBG from '../../assets/img/ProfBG.png';
 
 const HeroSection = ({ user, isEditing, setUser }) => {
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
     const fileInputRef = useRef(null);
     const apiURL = import.meta.env.VITE_API_URL;
+
+    console.log(`${apiURL}/${user.picture}`);
 
     const handleImageClick = () => {
         if (fileInputRef.current) {
@@ -57,9 +58,9 @@ const HeroSection = ({ user, isEditing, setUser }) => {
                 {isEditing ? (
                     <>
                         <img
-                            src={`${BACKEND_URL}/${user.picture}`}
+                            src={`${apiURL}/${user.picture}`}
                             alt="Profile"
-                            className="w-36 h-36 rounded-full border-4 p-1 border-green-400 shadow-lg cursor-pointer"
+                            className="w-36 h-36 rounded-full border-4 p-1 border-green-400 shadow-lg cursor-pointer object-cover"
                             onClick={handleImageClick}
                         />
                         <input
@@ -72,9 +73,9 @@ const HeroSection = ({ user, isEditing, setUser }) => {
                     </>
                 ) : (
                     <img
-                        src={`${BACKEND_URL}/${user.picture}`}
+                        src={`${apiURL}/${user.picture}`}
                         alt="Profile"
-                        className="w-36 h-36 rounded-full p-2 shadow-lg"
+                        className="w-36 h-36 rounded-full p-2 shadow-lg object-cover"
                     />
                 )}
                 <h1 className="text-4xl font-bold px-4 py-2 rounded">{user.username}</h1>
