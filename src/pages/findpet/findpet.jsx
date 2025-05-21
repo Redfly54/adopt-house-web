@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CardItem from '../../components/pets-components/card-item';
 
 const FindPetPage = () => {
   const apiURL = import.meta.env.VITE_API_URL;
@@ -76,10 +77,14 @@ const FindPetPage = () => {
         {categories.map(cat => (
           <button
             key={cat.id}
-            className={`flex flex-col items-center px-6 py-3 rounded-lg border-2 ${category === String(cat.id) ? 'border-blue-500 bg-blue-100' : 'border-gray-300 bg-white'}`}
+            className={`flex flex-col items-center px-6 py-3 rounded-lg border-2 cursor-pointer ${category === String(cat.id) ? 'border-blue-500 bg-blue-100' : 'border-gray-300 bg-white'}`}
             onClick={() => {
-              setCategory(String(cat.id));
-              setCurrentPage(1); // Reset to first page on filter change
+              if (category === String(cat.id)) {
+                setCategory('');
+              } else {
+                setCategory(String(cat.id));
+              }
+              setCurrentPage(1);
             }}
           >
             {cat.icon
@@ -126,6 +131,13 @@ const FindPetPage = () => {
         <div className="flex-1">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {paginatedPets.map((pet, idx) => (
+              <CardItem key={pet.id || idx} pet={pet} apiURL={apiURL} />
+            ))}
+          </div>
+        {/* Pet Cards Grid
+        <div className="flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {paginatedPets.map((pet, idx) => (
               <div key={pet.id || idx} className="bg-white rounded-lg shadow p-4 flex flex-col items-center">
                 <img
                   src={`${apiURL}/${pet.pictures[0]}`}
@@ -136,11 +148,11 @@ const FindPetPage = () => {
                 <div className="text-gray-500">{pet.breed?.name}</div>
               </div>
             ))}
-          </div>
+          </div> */}
           {/* Pagination Controls */}  
           <div className="flex justify-center mt-8 gap-2">
             <button
-              className="px-3 py-1 rounded border bg-white"
+              className="px-3 py-1 rounded border bg-white cursor-pointer hover:border-2 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:border"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -149,14 +161,14 @@ const FindPetPage = () => {
             {[...Array(totalPages)].map((_, i) => (
               <button
                 key={i + 1}
-                className={`px-3 py-1 rounded border ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                className={`px-3 py-1 rounded border cursor-pointer hover:border-2 ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
                 onClick={() => handlePageChange(i + 1)}
               >
                 {i + 1}
               </button>
             ))}
             <button
-              className="px-3 py-1 rounded border bg-white"
+              className="px-3 py-1 rounded border bg-white cursor-pointer hover:border-2 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:border"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
