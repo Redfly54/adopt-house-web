@@ -85,14 +85,14 @@ const ProfilePage = () => {
                 {isEditing ? (
                     <button
                         onClick={handleSaveClick}
-                        className="px-10 py-2 border-3 border-sky-500 rounded-lg bg-green-500 text-white hover:bg-green-600"
+                        className="px-10 py-2 border-3 border-sky-500 rounded-lg bg-green-500 text-white hover:bg-green-600 cursor-pointer"
                     >
                         Save
                     </button>
                 ) : (
                     <button
                         onClick={handleEditClick}
-                        className="px-10 py-2 rounded-lg border-3 border-sky-500 hover:bg-sky-500 hover:text-white"
+                        className="px-10 py-2 rounded-lg border-3 border-sky-500 hover:bg-sky-500 hover:text-white cursor-pointer"
                     >
                         Edit Bio
                     </button>
