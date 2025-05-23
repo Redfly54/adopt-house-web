@@ -50,7 +50,6 @@ const ReferencePage = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        console.log(animal_type, breed, animal_gender,age_group, color_count);
         e.preventDefault();
             try {
                 const response = await fetch(`${apiURL}/users/register`, {
@@ -76,6 +75,26 @@ const ReferencePage = () => {
                 })
                 });
                 if (response.ok) {
+                    const userData = await response.json();
+                    const user_id = userData.user_id || userData.id;
+                    console.log('Your user ID:', user_id);
+                    try {
+                        const recoms = await fetch(`${apiURL}/recommendations/${user_id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        });
+                        if (recoms.ok) {
+                            const recommendations = await recoms.json();
+                            console.log('Recommendations:', recommendations);
+                            navigate('/login');
+                        } else {
+                            console.error('Failed to fetch recommendations');
+                        }
+                    } catch (err) {
+                        console.error('Error fetching recommendations:', err);
+                    }
                     navigate('/login');
                 } else {
                     const errorData =await response.json();
