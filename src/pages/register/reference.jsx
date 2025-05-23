@@ -38,7 +38,6 @@ const ReferencePage = () => {
 
     useEffect(() => {
         if (animal_type) {
-            console.log(animal_type);
             fetch(`${apiURL}/breeds?category_id=${animal_type}`)
                 .then(res => res.json())
                 .then(data => setBreeds(data));
@@ -51,6 +50,7 @@ const ReferencePage = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        console.log(animal_type, breed, animal_gender,age_group, color_count);
         e.preventDefault();
             try {
                 const response = await fetch(`${apiURL}/users/register`, {
