@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), flowbiteReact()],
   server: {
     host: true,
-    port: 9000,
+    port: 5173,
     watch: {
       usePolling: true,
     },

@@ -11,7 +11,7 @@ import PostPage from './pages/post/post';
 import ProfilePage from './pages/profile/profile';
 import FindPetPage from './pages/findpet/findpet';
 import MyPosts from './pages/post/myposts';
-import petDetail from './pages/petDetails/petDetails';
+import petDetail from './pages/petDetail/petDetail';
 
 import TermsPolicy from './pages/terms-policy/terms-policy';
 import About from './pages/about/about';
