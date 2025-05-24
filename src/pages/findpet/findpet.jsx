@@ -104,8 +104,8 @@ const FindPetPage = () => {
             }}
           >
             {cat.icon
-                ? <img src={`${apiURL}/${cat.icon}`} alt={cat.name} className="w-8 h-8 object-contain" />
-                : <span className="text-3xl">🐾</span>
+              ? <img src={`${apiURL}/${cat.icon}`} alt={cat.name} className="w-8 h-8 object-contain" />
+              : <span className="text-3xl">🐾</span>
             }
             {cat.name}
           </button>
@@ -150,7 +150,7 @@ const FindPetPage = () => {
               <CardItem key={pet.id || idx} pet={pet} apiURL={apiURL} favorites={favorites} />
             ))}
           </div>
-          {/* Pagination Controls */}  
+          {/* Pagination Controls */}
           <div className="flex justify-center mt-8 gap-2">
             <button
               className="px-3 py-1 rounded border bg-white cursor-pointer hover:border-2 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:border"

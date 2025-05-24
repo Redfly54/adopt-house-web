@@ -1,15 +1,35 @@
 import React, { useState } from "react";
+import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
 
 const Accordition = ({
     title,
-    description,
+    description1,
+    description2,
+    description3,
 }) => {
     const [accorditionOpen, setAccortditionOpen] = useState(false);
 
     return (
-        <div className="py-2 bg-(--white)">
+        <div className="py-2">
 
-            <button onClick={() => setAccortditionOpen(!accorditionOpen)} className="flex justify-between w-full">
+            <Accordion>
+                <AccordionPanel>
+                    <AccordionTitle className="text-(--black)">{title}</AccordionTitle>
+                    <AccordionContent>
+                        <p className="mb-2 text-(--black) ">
+                            {description1}
+                        </p>
+                        <p className="mb-2 text-(--black) ">
+                            {description2}
+                        </p>
+                        <p className="text-(--black)">
+                            {description3}
+                        </p>
+                    </AccordionContent>
+                </AccordionPanel>
+            </Accordion>
+
+            {/* <button onClick={() => setAccortditionOpen(!accorditionOpen)} className="flex justify-between w-full">
                 <span>{title}</span>
                 {accorditionOpen ? <span>-</span> : <span>+</span>}
 
@@ -20,7 +40,7 @@ const Accordition = ({
                 <div className="overflow-hidden">
                     {description}
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

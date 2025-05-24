@@ -27,7 +27,7 @@ const ReferencePage = () => {
     const [breeds, setBreeds] = useState([]);
     const [ages, setAges] = useState([]);
 
-     useEffect(() => {
+    useEffect(() => {
         fetch(`${apiURL}/pet-categories`)
             .then(res => res.json())
             .then(data => setCategories(data));
@@ -50,14 +50,15 @@ const ReferencePage = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-            try {
-                const response = await fetch(`${apiURL}/users/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
+        try {
+            const response = await fetch(`${apiURL}/users/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
                     username,
                     email,
                     password,
@@ -73,6 +74,7 @@ const ReferencePage = () => {
                     age_group,
                     color_count
                 })
+
                 });
                 if (response.ok) {
                     const userData = await response.json();
@@ -104,7 +106,12 @@ const ReferencePage = () => {
             } catch (error) {
                 console.error('Error:', error.message);
                 alert('An error occurred. Please try again.');
+
             }
+        } catch (error) {
+            console.error('Error:', error.message);
+            alert('An error occurred. Please try again.');
+        }
     }
 
     return (
@@ -113,7 +120,7 @@ const ReferencePage = () => {
                 <h2 className="text-2xl font-semibold text-center mb-8">Register Hewan</h2>
                 <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                     <div>
-                        <label className="block mb-1">Type Hewan</label>
+                        <label className="block mb-1">Kategori Hewan</label>
                         <select
                             value={animal_type}
                             onChange={(e) => setTipeHewan(e.target.value)}
@@ -121,7 +128,7 @@ const ReferencePage = () => {
                             required
                         >
                             <option value="" disabled>
-                                Select Tipe Hewan yang ingin dipelhara
+                                Pilih kategori Hewan yang ingin dipelhara
                             </option>
                             {categories.map(cat => (
                                 <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -135,7 +142,7 @@ const ReferencePage = () => {
                             onChange={(e) => setJenisHewan(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
                             required
-                            disabled={!animal_type} 
+                            disabled={!animal_type}
                         >
                             <option value="" disabled>
                                 {animal_type
@@ -148,12 +155,12 @@ const ReferencePage = () => {
                         </select>
                     </div>
                     <div>
-                        <label className="block mb-1">Gender Hewan</label>
+                        <label className="block mb-1">Kelamin Hewan</label>
                         <select
                             value={animal_gender}
                             onChange={(e) => setGenderHewan(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
-                            disabled={!breed} 
+                            disabled={!breed}
                             required
                         >
                             <option value="" disabled>
@@ -172,7 +179,7 @@ const ReferencePage = () => {
                             onChange={(e) => setKelompokUsia(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
                             required
-                            disabled={!animal_gender} 
+                            disabled={!animal_gender}
                         >
                             <option value="" disabled>
                                 {animal_gender
@@ -190,7 +197,7 @@ const ReferencePage = () => {
                             value={color_count}
                             onChange={(e) => setJumlahWarna(e.target.value)}
                             className="w-full p-2 bg-gray-200 rounded"
-                            disabled={!age_group} 
+                            disabled={!age_group}
                             required
                         >
                             <option value="" disabled>
@@ -204,14 +211,14 @@ const ReferencePage = () => {
                             <option value="4">4</option>
                         </select>
                     </div>
-                <div className="flex justify-center mt-8">
-                    <button
-                        type="submit"
-                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                        Register
-                    </button>
-                </div>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            type="submit"
+                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        >
+                            Register
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
