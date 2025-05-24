@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CardItem = ({ pet, apiURL,favorites }) => {
+const CardItem = ({ pet, apiURL, favorites = [] }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isFavorited, setIsFavorited] = useState(favorites.includes(pet.id));
 
@@ -19,18 +19,16 @@ const CardItem = ({ pet, apiURL,favorites }) => {
             if (response.ok) {
                 setIsFavorited(true);
                 const data = await response.json();
-                console.log(favorites);
                 alert(data.message);
             }
-        } 
-        catch (err) {
+        } catch (err) {
             alert("Failed to add favorite");
             console.error("Error adding favorite:", err);
         }
         setIsLoading(false);
     };
 
-     const handleUnfavorite = async () => {
+    const handleUnfavorite = async () => {
         const token = localStorage.getItem('auth_token');
         setIsLoading(true);
         try {
@@ -44,13 +42,11 @@ const CardItem = ({ pet, apiURL,favorites }) => {
             if (response.ok) {
                 setIsFavorited(false);
                 const data = await response.json();
-                console.log(favorites);
                 alert(data.message);
             }
-        } 
-        catch (err) {
-            alert("Failed to add favorite");
-            console.error("Error adding favorite:", err);
+        } catch (err) {
+            alert("Failed to remove favorite");
+            console.error("Error removing favorite:", err);
         }
         setIsLoading(false);
     };
