@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import HeroBG from '../../assets/img/HeroBG.png'
-import IcTermsPolicy from '../../assets/img/TermsPolicy.png'
-import animals from '../../assets/img/animals.png'
-import AboutUs from '../../assets/img/AboutUs.png';
+import HeroBG from '../../assets/img/HeroBG.png';
+import IcTermsPolicy from '../../assets/img/TermsPolicy.png';
+import AboutUs from '../../assets/img/aboutUs.png';
+import animals from '../../assets/img/animals.png';
 
 const HeroSection = () => {
     return (
