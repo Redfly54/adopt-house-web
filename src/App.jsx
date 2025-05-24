@@ -11,7 +11,7 @@ import PostPage from './pages/post/post';
 import ProfilePage from './pages/profile/profile';
 import FindPetPage from './pages/findpet/findpet';
 import MyPosts from './pages/post/myposts';
-import petDetail from './pages/petDetail/petDetail';
+import PetDetail from './pages/petDetail/petDetail';
 
 import TermsPolicy from './pages/terms-policy/terms-policy';
 import About from './pages/about/about';
@@ -34,7 +34,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/findpet" element={<FindPetPage />} />
         <Route path="/my-posts" element={<MyPosts />} />
-        <Route path='/pet-detail' element={<petDetail />} />
+        <Route path='/pet-detail/:id' element={<PetDetail />} />
 
         <Route path='/terms-policy' element={<TermsPolicy />} />
         <Route path='/animals' element={<Animals />} />

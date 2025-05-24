@@ -1,6 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+
 const CardItem = ({ pet, apiURL }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/pet-detail/${pet.id}`);
+    };
+
     return (
-        <div className="relative bg-white rounded-xl border border-gray-400 shadow w-48 overflow-hidden flex flex-col items-center">
+        <div
+            onClick={handleClick}
+            className="relative bg-white rounded-xl border border-gray-400 shadow w-48 overflow-hidden flex flex-col items-center cursor-pointer"
+        >
             <img
                 src={`${apiURL}/${pet.pictures[0]}`}
                 alt={pet.pet_name}

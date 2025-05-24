@@ -1,9 +1,10 @@
-import CardItem from "./card-item";
+// import CardItem from "../pets-components/card-item";
 
 const CardList = () => {
     return (
         <div className="card-list w-full h-screen bg-(--white)">
-            <CardItem />
+            <h1>ini card rekomendasi</h1>
+            {/* <CardItem /> */}
         </div>
     )
 }
