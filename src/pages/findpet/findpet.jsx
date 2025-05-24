@@ -13,6 +13,7 @@ const FindPetPage = () => {
   const [kota, setKota] = useState('');
   const [kotas, setKotas] = useState([]);
   const [pets, setPets] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,6 +59,21 @@ const FindPetPage = () => {
     const matchKota = kota && kota !== 'Any' ? pet.kota === kota : true;
     return matchCategory && matchBreed && matchGender && matchAge && matchKota;
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      fetch(`${apiURL}/users/favorites`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+        .then(res => res.json())
+        .then(data => setFavorites(data.favorites || []))
+        .catch(err => console.error('Error fetching favorites:', err));
+    }
+  }, [apiURL]);
+
 
   // Pagination logic
   const totalPages = Math.ceil(filteredPets.length / petsPerPage);
@@ -131,7 +147,7 @@ const FindPetPage = () => {
         <div className="flex-1">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {paginatedPets.map((pet, idx) => (
-              <CardItem key={pet.id || idx} pet={pet} apiURL={apiURL} />
+              <CardItem key={pet.id || idx} pet={pet} apiURL={apiURL} favorites={favorites} />
             ))}
           </div>
           {/* Pagination Controls */}  
