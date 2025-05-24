@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const CardItem = ({ pet, apiURL,favorites }) => {
@@ -54,14 +53,10 @@ const CardItem = ({ pet, apiURL,favorites }) => {
             console.error("Error adding favorite:", err);
         }
         setIsLoading(false);
-
     };
 
     return (
-        <div
-            onClick={handleClick}
-            className="relative bg-white rounded-xl border border-gray-400 shadow w-48 overflow-hidden flex flex-col items-center cursor-pointer"
-        >
+        <div className="relative bg-white rounded-xl border border-gray-400 shadow w-48 overflow-hidden flex flex-col items-center">
             <img
                 src={`${apiURL}/${pet.pictures[0]}`}
                 alt={pet.pet_name}
