@@ -75,6 +75,7 @@ const ReferencePage = () => {
                     color_count
                 })
 
+
                 });
                 if (response.ok) {
                     const userData = await response.json();
@@ -97,17 +98,16 @@ const ReferencePage = () => {
                     }
                     catch (err) {
                         console.error('Error fetching recommendations:', err);
-                    }
-                    navigate('/login');
-                } else {
-                    const errorData =await response.json();
-                    console.error('Registration failed:', errorData.message);
-                    alert(errorData.message); 
-                }
-            } catch (error) {
-                console.error('Error:', error.message);
-                alert('An error occurred. Please try again.');
 
+                    }
+                } catch (err) {
+                    console.error('Error fetching recommendations:', err);
+                }
+                navigate('/login');
+            } else {
+                const errorData = await response.json();
+                console.error('Registration failed:', errorData.message);
+                alert(errorData.message);
             }
     }
 
