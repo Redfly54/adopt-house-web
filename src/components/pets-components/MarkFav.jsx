@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-const MarkFav = ({ pet, apiURL, favorites = [] }) => {
+const MarkFav = ({ pet, apiURL, favorites = [], updateFavorites }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isFavorited, setIsFavorited] = useState(false);
 
     useEffect(() => {
         if (pet && favorites && Array.isArray(favorites)) {
-            setIsFavorited(favorites.includes(pet.id));
+            // Check if favorites is array of IDs or pet objects
+            if (favorites.length > 0 && typeof favorites[0] === 'object') {
+                setIsFavorited(favorites.some(favPet => favPet.id === pet.id));
+            } else {
+                setIsFavorited(favorites.includes(pet.id));
+            }
         }
     }, [favorites, pet]);
 
-    const handleFavorite = async () => {
+    const handleFavorite = async (event) => {
+        event.stopPropagation();
         setIsLoading(true);
         const token = localStorage.getItem('auth_token');
         try {
@@ -27,6 +33,9 @@ const MarkFav = ({ pet, apiURL, favorites = [] }) => {
                 setIsFavorited(true);
                 const data = await response.json();
                 alert(data.message);
+                if (updateFavorites) {
+                    updateFavorites(pet.id, true);
+                }
             }
         }
         catch (err) {
@@ -36,7 +45,8 @@ const MarkFav = ({ pet, apiURL, favorites = [] }) => {
         setIsLoading(false);
     };
 
-    const handleUnfavorite = async () => {
+    const handleUnfavorite = async (event) => {
+        event.stopPropagation();
         const token = localStorage.getItem('auth_token');
         setIsLoading(true);
         try {
@@ -51,6 +61,9 @@ const MarkFav = ({ pet, apiURL, favorites = [] }) => {
                 setIsFavorited(false);
                 const data = await response.json();
                 alert(data.message);
+                if (updateFavorites) {
+                    updateFavorites(pet.id, false);
+                }
             }
         }
         catch (err) {
