@@ -94,7 +94,8 @@ const ReferencePage = () => {
                         } else {
                             console.error('Failed to fetch recommendations');
                         }
-                    } catch (err) {
+                    }
+                    catch (err) {
                         console.error('Error fetching recommendations:', err);
                     }
                     navigate('/login');
@@ -108,10 +109,6 @@ const ReferencePage = () => {
                 alert('An error occurred. Please try again.');
 
             }
-        } catch (error) {
-            console.error('Error:', error.message);
-            alert('An error occurred. Please try again.');
-        }
     }
 
     return (
