@@ -100,7 +100,7 @@ const PetDetail = () => {
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
                 <Carousel slideInterval={3000} className="h-full">
                     {petDetails.data.pictures && petDetails.data.pictures.map((pic, index) => (
-                        <img key={index} src={`${apiURL}/${pic}`} alt={`Pet image ${index + 1}`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-cover w-full" />
+                        <img key={index} src={`${apiURL}/${pic}`} alt={`Pet image ${index + 1}`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full px-12" />
                     ))}
                 </Carousel>
             </div>

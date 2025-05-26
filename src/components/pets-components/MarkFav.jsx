@@ -4,15 +4,21 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 const MarkFav = ({ pet, apiURL, favorites = [], updateFavorites }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isFavorited, setIsFavorited] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
-        if (pet && favorites && Array.isArray(favorites)) {
-            // Check if favorites is array of IDs or pet objects
-            if (favorites.length > 0 && typeof favorites[0] === 'object') {
-                setIsFavorited(favorites.some(favPet => favPet.id === pet.id));
-            } else {
-                setIsFavorited(favorites.includes(pet.id));
+        try {
+            if (pet && favorites && Array.isArray(favorites)) {
+                // Check if favorites is array of IDs or pet objects
+                if (favorites.length > 0 && typeof favorites[0] === 'object') {
+                    setIsFavorited(favorites.some(favPet => favPet.id === pet.id));
+                } else {
+                    setIsFavorited(favorites.includes(pet.id));
+                }
             }
+        } catch (error) {
+            console.error("Error in MarkFav useEffect:", error);
+            setHasError(true);
         }
     }, [favorites, pet]);
 
@@ -72,6 +78,10 @@ const MarkFav = ({ pet, apiURL, favorites = [], updateFavorites }) => {
         }
         setIsLoading(false);
     };
+
+    if (hasError) {
+        return <div>Error loading favorite toggle</div>;
+    }
 
     if (!pet) {
         return null;
