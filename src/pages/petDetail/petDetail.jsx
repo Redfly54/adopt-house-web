@@ -108,13 +108,13 @@ const PetDetail = () => {
                 <div className="lg:col-span-2 md:col-span-1 row-start-1 row-end-3 bg-(--white) rounded-2xl mt-4 p-[4rem]">
 
                     <h1 className="text-3xl font-bold mb-2"><strong>{petDetails.data.pet_name}</strong></h1>
-                    <p className=" text-xl mb-1"><strong>Jenis:</strong> {petDetails.data.breed?.name}</p>
+                    <p className=" text-xl mb-1"><strong>{petDetails.data.category?.name} Jenis :</strong> {petDetails.data.breed?.name}</p>
                     <hr />
                     <div className="grid grid-flow-col gap-1 my-[1rem] ">
-                        <p className="mb-1"><strong>Kelamin:</strong> {petDetails.data.gender}</p>
-                        <p className="mb-1" title={petDetails.data.age?.description} ><strong>Umur:</strong> {petDetails.data.age?.category}</p>
-                        <p className="mb-1"><strong>Berat:</strong> {petDetails.data.weight} Kg</p>
-                        <p className="mb-1"><strong>Jumlah Warna:</strong> {petDetails.data.color_count}</p>
+                        <p className="mb-1"><strong>Kelamin :</strong> {petDetails.data.gender}</p>
+                        <p className="mb-1" title={petDetails.data.age?.description} ><strong>Umur :</strong> {petDetails.data.age?.category}</p>
+                        <p className="mb-1"><strong>Berat :</strong> {petDetails.data.weight} Kg</p>
+                        <p className="mb-1"><strong>Jumlah Warna :</strong> {petDetails.data.color_count}</p>
                     </div>
                     <hr />
                     <p className="my-[1rem]"><strong>Tentang {petDetails.data.pet_name} <br /> </strong> {petDetails.data.about_pet}</p>
@@ -123,9 +123,9 @@ const PetDetail = () => {
                     <h3 className="text-xl font-semibold mb-2">Informasi Owner</h3>
                     <hr />
                     <div>
-                        <p className="my-[1rem]"><strong>Address:</strong> <br /> <hr /> <br />{petDetails.data.user?.alamat || petDetails.data.user?.address || 'N/A'}</p>
-                        <p className="my-[1rem]"><strong>Email:</strong> <br /> <hr /> <br />{petDetails.data.user?.email}</p>
-                        <p className="my-[1rem]"><strong>Phone:</strong> <br /> <hr /> <br />{petDetails.data.user?.phone}</p>
+                        <p className="my-[1rem]"><strong>Alamat :</strong> <br /> <hr /> <br />{petDetails.data.user?.alamat}, <br />{petDetails.data.user?.kelurahan}, {petDetails.data.user?.kecamatan}, {petDetails.data.user?.kota}, {petDetails.data.user?.provinsi}</p>
+                        <p className="my-[1rem]"><strong>Email :</strong> <br /> <hr /> <br />{petDetails.data.user?.email}</p>
+                        <p className="my-[1rem]"><strong>No Telephone :</strong> <br /> <hr /> <br />{petDetails.data.user?.phone}</p>
                     </div>
                     <div className="flex justify-between mb-2">
                         <div className="grid grid-cols-2 gap-2 my-[1rem]">

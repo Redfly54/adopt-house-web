@@ -118,7 +118,7 @@ const MyPosts = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen py-8">
+    <div className="min-h-screen mx-auto md:mx-[3rem] py-8">
       <h2 className="text-4xl font-bold text-center mb-2 font-poppins">Your Post Pet</h2>
       <hr className="border-black w-11/12 mx-auto mb-8" />
       {deleteError && <div className="text-red-600 text-center mb-4">{deleteError}</div>}
@@ -139,7 +139,7 @@ const MyPosts = () => {
                 onClick={() => handleDelete(post.id)}
                 disabled={isDeleting}
               >
-                {isDeleting ? 'Deleting...' : 'Hapus'}
+                {isDeleting ? 'Menghapus...' : 'Hapus'}
               </button>
             </div>
           </div>

@@ -84,9 +84,9 @@ const CardList = ({ user }) => {
     }
 
     return (
-        <div className="card-list grid grid-rows-1 md:grid-rows-1 gap-2 w-full my-[2rem] py-[2rem] bg-[var(--white)] justify-items-center">
+        <div className="card-list grid grid-rows-1 md:grid-rows-1 gap-2 w-full my-[10rem] py-[2rem] bg-[var(--white)] justify-items-center">
             <div>
-                <h1 className="text-3xl font-semibold my-[2rem]" >Rekomendasi Hewan Untuk Anda</h1>
+                <h1 className="text-xl md:text-3xl font-semibold text-center my-[2rem]" >Rekomendasi Hewan Untuk Anda</h1>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
 

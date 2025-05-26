@@ -174,7 +174,7 @@ const PostPage = () => {
                 required
               >
                 <option value="" disabled>
-                  Select Tipe Hewan yang ingin dipelhara
+                  Pilih Kategori Hewan yang ingin dipelhara
                 </option>
                 {categories.map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -192,8 +192,8 @@ const PostPage = () => {
               >
                 <option value="" disabled>
                   {animal_type
-                    ? 'Select Jenis Hewan'
-                    : 'Select Type Hewan First'}
+                    ? 'Pilih Jenis Hewan'
+                    : 'Pilih Type Hewan Dahulu'}
                 </option>
                 {breeds.map(br => (
                   <option key={br.id} value={br.id}>{br.name}</option>
@@ -214,8 +214,8 @@ const PostPage = () => {
               >
                 <option value="" disabled>
                   {breed
-                    ? 'Select Jumlah Warna Hewan'
-                    : 'Select Jenis Hewan First'}
+                    ? 'Pilih Jumlah Warna Hewan'
+                    : 'Pilih Jenis Hewan Dahulu'}
                 </option>
                 <option>1</option>
                 <option>2</option>
@@ -233,11 +233,11 @@ const PostPage = () => {
               >
                 <option value="" disabled>
                   {color_count
-                    ? 'Select Kelompok Usia Hewan'
-                    : 'Select Jumlah Warna Hewan First'}
+                    ? 'Pilih Kelompok Usia Hewan'
+                    : 'Pilih Jumlah Warna Hewan Dahulu'}
                 </option>
                 {ages.map(age => (
-                  <option key={age.id} value={age.id}>{age.category}</option>
+                  <option key={age.id} value={age.id}>{age.category} {age.description}</option>
                 ))}
               </select>
             </div>
@@ -246,7 +246,7 @@ const PostPage = () => {
               <input
                 type="number"
                 className="w-full border rounded px-3 py-2"
-                placeholder="Fill With Number"
+                placeholder="Isi Dengan Angka"
                 value={berat}
                 onChange={e => setBerat(e.target.value)}
                 disabled={!age_group}
@@ -267,11 +267,11 @@ const PostPage = () => {
               >
                 <option value="" disabled>
                   {berat
-                    ? 'Select Gender Hewan'
-                    : 'Input Weight First'}
+                    ? 'Pilih Gender Hewan'
+                    : 'Isi Berat Dahulu'}
                 </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Jantan">Jantan</option>
+                <option value="Betina">Betina</option>
               </select>
             </div>
             <div className="md:col-span-2">
