@@ -16,6 +16,7 @@ import PetDetail from './pages/petDetail/petDetail';
 import TermsPolicy from './pages/terms-policy/terms-policy';
 import About from './pages/about/about';
 import Animals from './pages/animals/animals';
+import Favorites from './pages/favorites/favorites';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/findpet" element={<FindPetPage />} />
         <Route path="/my-posts" element={<MyPosts />} />
         <Route path='/pet-detail/:id' element={<PetDetail />} />
+        <Route path='/favorites' element={<Favorites />} />
 
         <Route path='/terms-policy' element={<TermsPolicy />} />
         <Route path='/animals' element={<Animals />} />

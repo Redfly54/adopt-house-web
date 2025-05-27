@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Carousel } from "flowbite-react";
-import { FaRegHeart, FaHeart, FaShare } from "react-icons/fa6";
+import { FaShare } from "react-icons/fa6";
+import MarkFav from "../../components/pets-components/MarkFav";
 
 const PetDetail = () => {
     const { id } = useParams();
     const apiURL = import.meta.env.VITE_API_URL;
     const [petDetails, setPetDetails] = useState(null);
+    const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isFavorite, setIsFavorite] = useState(false); // added favorite state
 
     useEffect(() => {
         if (id && apiURL) {
@@ -42,6 +43,31 @@ const PetDetail = () => {
         }
     }, [id, apiURL]);
 
+    useEffect(() => {
+        const token = localStorage.getItem('auth_token');
+        if (token) {
+            fetch(`${apiURL}/users/favorites`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(async res => {
+                    if (!res.ok) {
+                        const text = await res.text();
+                        console.error('Error fetching favorites:', res.status, text);
+                        return;
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data) {
+                        setFavorites(data.favorites || []);
+                    }
+                })
+                .catch(err => console.error('Error fetching favorites:', err));
+        }
+    }, [apiURL]);
+
     const handleShareClick = () => {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(window.location.href)
@@ -72,9 +98,9 @@ const PetDetail = () => {
     return (
         <div>
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-                <Carousel slideInterval={5000}>
-                    {petDetails.pictures && petDetails.pictures.map((pic, index) => (
-                        <img key={index} src={`${apiURL}/${pic}`} alt={`Pet image ${index + 1}`} />
+                <Carousel slideInterval={3000} className="h-full">
+                    {petDetails.data.pictures && petDetails.data.pictures.map((pic, index) => (
+                        <img key={index} src={`${apiURL}/${pic}`} alt={`Pet image ${index + 1}`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-cover w-full" />
                     ))}
                 </Carousel>
             </div>
@@ -84,16 +110,6 @@ const PetDetail = () => {
                     <h1 className="text-3xl font-bold mb-2"><strong>{petDetails.data.pet_name}</strong></h1>
                     <p className=" text-xl mb-1"><strong>Jenis:</strong> {petDetails.data.breed?.name}</p>
                     <hr />
-                    {/* <div className="flex items-center mb-2">
-                        {petDetails.category?.icon && (
-                            <img
-                                src={`${apiURL}/${petDetails.category.icon}`}
-                                alt={petDetails.category.name}
-                                className="w-8 h-8 mr-2 object-contain"
-                            />
-                        )}
-                        <p className="text-lg font-semibold">{petDetails.data.category?.name}</p>
-                    </div> */}
                     <div className="grid grid-flow-col gap-1 my-[1rem] ">
                         <p className="mb-1"><strong>Kelamin:</strong> {petDetails.data.gender}</p>
                         <p className="mb-1" title={petDetails.data.age?.description} ><strong>Umur:</strong> {petDetails.data.age?.category}</p>
@@ -124,14 +140,9 @@ const PetDetail = () => {
                         </div>
                         <div className="grid grid-cols-2 gap-2 my-[1rem]">
                             <div
-                                className="favorite bg-(--blue-sky) justify-items-center h-10 w-10 rounded-4xl cursor-pointer flex items-center justify-center"
-                                onClick={() => setIsFavorite(!isFavorite)}
-                                aria-label="Toggle favorite"
-                                role="button"
-                                tabIndex={0}
-                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsFavorite(!isFavorite); }}
+                                className="favorite bg-(--blue-sky) justify-items-center h-10 w-10 rounded-4xl cursor-pointer flex items-center justify-center text-xl "
                             >
-                                {isFavorite ? <FaHeart /> : <FaRegHeart />}
+                                <MarkFav pet={petDetails.data} apiURL={apiURL} favorites={favorites} />
                             </div>
                             <div
                                 className="share bg-(--blue-sky) justify-items-center h-10 w-10 rounded-4xl flex items-center justify-center cursor-pointer"
