@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CardItem from "../../components/pets-components/card-item";
-import MarkFav from "../../components/pets-components/MarkFav";
+import { Spinner } from "flowbite-react";
 
 const Favorites = () => {
     const apiURL = import.meta.env.VITE_API_URL;
@@ -45,10 +45,13 @@ const Favorites = () => {
                 console.log('Fetched all pets:', petsData);
 
                 const favoriteIds = favData.favorites || [];
+                console.log('Favorite IDs:', favoriteIds);
                 const petsList = petsData.data || [];
+                console.log('Pets List:', petsList);
 
                 // Filter pets to only favorites
                 const favoritePets = petsList.filter(pet => favoriteIds.includes(pet.id));
+                console.log('Filtered Favorite Pets:', favoritePets);
 
                 setFavorites(favoritePets);
             } catch (err) {
@@ -63,25 +66,32 @@ const Favorites = () => {
     }, [apiURL]);
 
     // Function to update favorites state when a pet is favorited or unfavorited
-    const updateFavorites = (petId, isFavorited) => {
-        setFavorites(prevFavorites => {
-            if (isFavorited) {
-                // Add pet if not already in favorites
-                if (!prevFavorites.some(pet => pet.id === petId)) {
-                    // Find pet object from current favorites or create a placeholder
-                    const newPet = { id: petId };
-                    return [...prevFavorites, newPet];
+    const updateFavorites = async (petId, isFavorited) => {
+        if (isFavorited) {
+            // Fetch full pet data for the new favorite
+            try {
+                const response = await fetch(`${apiURL}/pets/${petId}`);
+                if (!response.ok) {
+                    console.error('Failed to fetch pet data for favorite update:', response.status);
+                    return;
                 }
-                return prevFavorites;
-            } else {
-                // Remove pet from favorites
-                return prevFavorites.filter(pet => pet.id !== petId);
+                const petData = await response.json();
+                setFavorites(prevFavorites => {
+                    if (!prevFavorites.some(pet => pet.id === petId)) {
+                        return [...prevFavorites, petData.data || petData];
+                    }
+                    return prevFavorites;
+                });
+            } catch (error) {
+                console.error('Error fetching pet data for favorite update:', error);
             }
-        });
+        } else {
+            setFavorites(prevFavorites => prevFavorites.filter(pet => pet.id !== petId));
+        }
     };
 
     if (isLoading) {
-        return <div>Loading favorites...</div>;
+        return <Spinner aria-label="Default status example" />;
     }
 
     if (error) {
@@ -89,19 +99,23 @@ const Favorites = () => {
     }
 
     if (!favorites.length) {
-        return <div>No favorites found.</div>;
+        return (
+            <div className="flex justify-center items-center my-[2rem] h-[20rem]">
+                <h1 className="text-3xl font-bold mb-6">Tidak Ada Hewan Favorite Kamu</h1>
+            </div>
+        );
     }
 
     return (
-        <div className="max-w-7xl mx-auto p-4">
+        <div className=" mx-auto md:mx-[3rem] p-4">
             <div className="justify-items-center border-b-2 my-[2rem]">
 
-                <h1 className="text-3xl font-bold mb-6">My Favorites</h1>
+                <h1 className="text-3xl font-semibold mb-6">My Favorites</h1>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 {favorites.map((pet, index) => (
-                    <div key={pet.id || index} className="relative">
-                        <CardItem pet={pet} apiURL={apiURL} favorites={favorites} />
+                    <div key={pet.id || index} className="">
+                        <CardItem pet={pet} apiURL={apiURL} favorites={favorites} updateFavorites={updateFavorites} />
                     </div>
                 ))}
             </div>
