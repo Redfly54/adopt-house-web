@@ -73,7 +73,7 @@ const CardItem = ({ pet, apiURL, favorites = [] }) => {
                 <span className="text-lg font-poppins">{pet.pet_name}</span>
                 <span className="text-5xl">I</span>
                 <span className="text-black text-lg text-right">
-                    {pet.breed?.name}
+                    {pet.breed.name}
                 </span>
             </div>
         </div>

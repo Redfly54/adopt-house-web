@@ -270,8 +270,8 @@ const PostPage = () => {
                                 ? 'Select Gender Hewan'
                                 : 'Input Weight First'}
                         </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Jantan">Male</option>
+                <option value="Betina">Female</option>
               </select>
             </div>
             <div className="md:col-span-2">
