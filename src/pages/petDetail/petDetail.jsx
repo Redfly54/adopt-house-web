@@ -30,6 +30,8 @@ const PetDetail = () => {
                     }
                     console.log("Fetched pet details:", data);
                     setPetDetails(data);
+                    console.log(data.pictures)
+
                 } catch (err) {
                     setError(err.message);
                 } finally {
@@ -98,10 +100,15 @@ const PetDetail = () => {
     return (
         <div>
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-                <Carousel slideInterval={3000} className="h-full">
-                    {petDetails.data.pictures && petDetails.data.pictures.map((pic, index) => (
-                        <img key={index} src={`${apiURL}/${pic}`} alt={`Pet image ${index + 1}`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full px-12" />
-                    ))}
+                <Carousel slideInterval={3000}>
+                    <img src={`${apiURL}/${petDetails.data.pictures[0]}`} alt={`Pet image`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full" />
+                    <img src={`${apiURL}/${petDetails.data.pictures[1]}`} alt={`Pet image`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full" />
+                    <img src={`${apiURL}/${petDetails.data.pictures[2]}`} alt={`Pet image`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full" />
+                    {/* {petDetails.data.pictures && petDetails.data.pictures.map((pic) => (
+                        <div key={pic}>
+                            <img src={`${apiURL}/${pic}`} alt={`Pet image`} className="h-56 sm:h-64 xl:h-80 2xl:h-96 object-contain w-full" />
+                        </div>
+                    ))} */}
                 </Carousel>
             </div>
             <div className="grid lg:grid-flow-col lg:grid-rows-2 gap-4 p-[2rem]">

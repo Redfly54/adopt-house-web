@@ -84,7 +84,7 @@ const MyPosts = () => {
   };
 
   const handleEdit = (petId) => {
-    navigate(`/post/${petId}`);
+    navigate(`/edit-post/${petId}`);
   };
 
   const handleDelete = async (petId) => {
@@ -114,7 +114,7 @@ const MyPosts = () => {
   }
 
   if (error) {
-    return <div className="text-center my-4 text-red-600">Error: {error}</div>;
+    return console.error(error)
   }
 
   return (

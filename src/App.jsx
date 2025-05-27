@@ -8,6 +8,7 @@ import HomePage from './pages/home/home';
 import ReferencePage from './pages/register/reference';
 
 import PostPage from './pages/post/post';
+import EditPost from './pages/post/editPost';
 import ProfilePage from './pages/profile/profile';
 import FindPetPage from './pages/findpet/findpet';
 import MyPosts from './pages/post/myposts';
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/post" element={<PostPage />} />
+        <Route path="/edit-post/:pet_id" element={<EditPost />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/findpet" element={<FindPetPage />} />
         <Route path="/my-posts" element={<MyPosts />} />
